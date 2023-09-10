@@ -1,3 +1,4 @@
+pip==3.9
 absl-py==1.4.0
 aniposelib==0.4.3
 asgiref==3.5.2
