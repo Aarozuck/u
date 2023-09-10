@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ chatroom.name }}</h2>
+    <ul>
+        {% for message in messages %}
+            <li>{{ message.content }} {{message.sender}}</li>  
+            {% for reply in message.replies.all %}
+                <ul>
+                    <li>{{ reply.content }}{{reply.sender}}</li>
+                </ul>
+            {% endfor %}
+            <a href="{% url 'reply_message' message_id=message.id %}">Reply</a>
+            <a href="{% url 'edit_message' message_id=message.id %}">Edit</a>
+            <a href="{% url 'delete_message' message_id=message.id %}">Delete</a>
+        {% endfor %}
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send Message</button>
+    </form>
+{% endblock %}

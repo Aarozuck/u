@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Chatroom List</h2>
+    <ul>
+        {% for chatroom in chatrooms %}
+            <li><a href="{% url 'chatroom' chatroom_id=chatroom.id %}">{{ chatroom.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endblock %}

@@ -1,0 +1,291 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>{{page}}</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicons/favicon-16x16.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico' %}">
+    <link rel="manifest" href="{% static 'assets/img/favicons/manifest.json' %}">
+    <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="{% static 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css' %}">
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="{% static 'vendors/prism/prism.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/user.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'vendors/glightbox/glightbox.min.css' %}" rel="stylesheet">
+    <style></style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+
+
+<body>
+    
+
+
+    <main class="main" id="top">
+        <div class="cursor-outer d-none d-md-block"></div>
+        <nav class="navbar navbar-light py-3 px-0 overflow-hidden">
+            <div class="container px-md-5">
+                <div class="row w-100 g-0 justify-content-between">
+                    <div class="col-8">
+                        <div class="mt-4 d-none d-lg-block">
+                            <h1 class="text-uppercase fs-lg-7 fs-5 fw-bolder text-300 lh-1 position-relative z-index-0">Welcome</h1>
+                            {% if request.user.is_authenticated %}
+                            <h1 class="d-none d-md-block fw-bolder text-outlined fs-7 text-white lh-1 mt-n4 position-relative z-index--1">{{request.user}}</h1>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-4 d-lg-none text-end pe-0">
+                        <button class="btn p-0 shadow-none text-black fs-2 d-inline-block" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvas" aria-controls="navbarOffcanvas" aria-expanded="false" aria-label="Toggle offcanvas navigation"><span class="menu-bar"></span></button>
+                    </div>
+                    <div class="offcanvas offcanvas-end px-0" id="navbarOffcanvas" aria-labelledby="navbarOffcanvasTitle" aria-hidden="true">
+                        <div class="offcanvas-header justify-content-end">
+                            <h5 class="visually-hidden offcanvas-title" id="navbarOffcanvasTitle">Menu</h5>
+                            <button class="btn p-0 shadow-none text-black fs-2 d-inline text-end" type="button" data-bs-dismiss="offcanvas" aria-label="Close"><span class="menu-close-bar"></span></button>
+                        </div>
+                        <div class="offcanvas-body px-0">
+                            <div class="d-lg-flex flex-center-start gap-3 overflow-hidden">
+                                <ul class="navbar-nav ms-auto fs-4 ps-6">
+                                    <li class="nav-item"><a class="nav-link d-inline-block nav-text-outlined lh-1 text-white fs-5 active" aria-current="page" href="{% url 'home' %}">Gallery</a></li>
+                                    <li class="nav-item"><a class="nav-link d-inline-block nav-text-outlined lh-1 text-white fs-5" aria-current="page" href="about.html">About</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="d-none d-lg-flex justify-content-end position-relative z-index-1">
+                            <div class="position-absolute absolute-centered z-index--1">
+                                <h1 class="ms-2 fw-bolder text-outlined text-uppercase text-white pe-none display-1">{{page}}</h1>
+                            </div>
+                                <ul class="navbar-nav navbar-fotogency ms-auto text-end">
+                                    {% include 'meme/nav.html' %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Load icon library -->
+                <div class="row g-0 mt-4 d-lg-none">
+                    <h1 class="text-uppercase ps-0 fs-lg-7 fs-5 fw-bolder text-300 lh-1 position-relative z-index-0">Memes</h1>
+                    <h1 class="fw-bolder text-outlined ps-0 fs-lg-7 fs-sm-6 fs-5 text-white lh-1 mt-sm-n4 mt-n3 position-relative z-index--1">All Works</h1>
+                </div>
+            </div>
+        </nav>
+        <section class="pt-3 pb-9 position-relative">
+            <div class="container px-md-5">
+                <div class="position-md-absolute start-0 ms-2 mt-3 mb-4">
+                    <ul class="nav gallery-tab d-flex gap-3" data-filter-nav="data-filter-nav">
+                        {% include 'meme/side_bar.html' %}
+                    </ul>
+                </div>
+
+                {% block content %} {% endblock %}
+                <div class="navigation">
+                    <a href="{% url 'feed' %}">Home</a>
+                    <a href="{% url 'home' %}">Memes</a>
+                    <a href="{% url 'upload-image' %}">➕</a>
+                    <a href="{% url 'chathome'%}">Chats</a>
+                    <a href="{% url 'profile' %}">Profile</a></div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- <section> begin ============================-->
+    <section class="bg-black py-0">
+
+
+        <style>
+            body {
+                background-color: rgb(39, 36, 36);
+            }
+            
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #fafafa;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #f5f5f5;
+            }
+            
+            .logo {
+                font-size: 24px;
+                font-weight: bold;
+            }
+            
+            .feed {
+                background-color: #fff;
+                margin-bottom: 20px;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .like-animation {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 48px;
+                color: red;
+                opacity: 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .message-button {
+                background-color: #1e90ff;
+                color: #fff;
+                padding: 10px 15px;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+            
+            .notification-animation {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 10px;
+                height: 10px;
+                background-color: red;
+                border-radius: 50%;
+                display: none;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+            
+            .navigation {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                background-color: #f5f5f5;
+                padding: 15px 0;
+                box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navigation a {
+                text-decoration: none;
+                color: #555;
+            }
+            
+            .toggle-button {
+                position: absolute;
+                top: 10px;
+                right: 70px;
+                padding: 5px;
+                background-color: #f5f5f5;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            
+            .toggle-button:hover {
+                background-color: #ddd;
+            }
+            
+            .toggle-button::before {
+                content: '';
+                display: block;
+                width: 20px;
+                height: 20px;
+                background-color: #555;
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+            }
+            
+            body.dark-mode {
+                background-color: #333;
+            }
+            
+            body.dark-mode .header,
+            body.dark-mode .navigation,
+            body.dark-mode .feed {
+                background-color: #222;
+            }
+            
+            body.dark-mode .like-animation,
+            body.dark-mode .notification-animation,
+            body.dark-mode .toggle-button::before {
+                background-color: #ffcb05;
+            }
+            
+            body.dark-mode .toggle-button {
+                background-color: #222;
+            }
+            
+            @media only screen and (max-width: 768px) {
+                .navigation {
+                    padding: 15px;
+                }
+            }
+        </style>
+
+
+
+        <!-- ===============================================-->
+        <!--    JavaScripts-->
+        <!-- ===============================================-->
+        <script src="{% static 'vendors/popper/popper.min.js' %}"></script>
+        <script src="{% static 'vendors/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'vendors/anchorjs/anchor.min.js' %}"></script>
+        <script src="{% static 'vendors/is/is.min.js' %}"></script>
+        <script src="{% static 'vendors/imagesloaded/imagesloaded.pkgd.js' %}"></script>
+        <script src="{% static 'vendors/isotope-layout/isotope.pkgd.min.js' %}">
+        </script>
+        <script src="{% static 'vendors/isotope-packery/packery-mode.pkgd.min.js' %}">
+        </script>
+        <script src="{% static 'vendors/glightbox/glightbox.min.js' %}"></script>
+        <script src="{% static 'vendors/fontawesome/all.min.js' %}"></script>
+        <script src="{% static 'vendors/lodash/lodash.min.js' %}"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+        <script src="{% static 'vendors/prism/prism.js' %}"></script>
+        <script src="{% static 'vendors/swiper/swiper-bundle.min.js' %}"></script>
+        <script src="{% static 'assets/js/theme.js' %}"></script>
+
+</body>
+
+</html>

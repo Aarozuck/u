@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Reply to Message</h2>
+    <p>Parent Message: {{ parent_message.content }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Reply</button>
+    </form>
+{% endblock %}

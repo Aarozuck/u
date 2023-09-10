@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>friends List</h2>
+{% for f in friends.users.all  %}
+<p>{{f.username}}</p>
+    {% empty %}
+    <p> no friends </p>
+{% endfor %}
+
+{% endblock %}

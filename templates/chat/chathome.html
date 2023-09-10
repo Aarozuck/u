@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
+<a href="{% url 'profile' %}">Profile</a>
+<a href="{% url 'friends_list' %}">Friends List</a>
+<a href="{% url 'chatroom_list' %}">Chatroom List</a>
+<a href="{% url 'user_logout' %}">Logout</a> {% else %}
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'register' %}">Register</a> {% endif %}
+</nav>
+<h1>
+    suggestions
+</h1>
+
+
+{% endblock %}

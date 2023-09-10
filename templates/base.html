@@ -1,0 +1,288 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/-Filterable-Cards-.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Abril+Fatface' %}">
+    <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Carousel-Hero.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Header-Blue--Sticky-Header--Smooth-Scroll.css' %}">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Landing-Page---Parallax-Background---Logo-Heading-ButtonGIF.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <style>
+            * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .feed {
+            background-color: #fff;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .like-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: red;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .notification-animation {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            display: none;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 15px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navigation a {
+            text-decoration: none;
+            color: #555;
+            height: 50px;
+        }
+        
+        .toggle-button {
+            position: absolute;
+            top: 10px;
+            right: 70px;
+            padding: 5px;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .toggle-button:hover {
+            background-color: #ddd;
+        }
+        
+        .toggle-button::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: #555;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background-color: #333;
+        }
+        
+        body.dark-mode .header,
+        body.dark-mode .navigation,
+        body.dark-mode .feed {
+            background-color: #222;
+        }
+        
+        body.dark-mode .like-animation,
+        body.dark-mode .notification-animation,
+        body.dark-mode .toggle-button::before {
+            background-color: #ffcb05;
+        }
+        
+        body.dark-mode .toggle-button {
+            background-color: #222;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .navigation {
+                padding: 2px;
+            }
+        }
+        
+        .glow {
+            font-size: 30px;
+            color: rgb(85, 121, 133);
+            text-align: center;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+        
+        @-webkit-keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px rgba(184, 155, 155, 0.74), 0 0 30px #c4b5b5, 0 0 40px #9c868d, 0 0 50px #ac8a90, 0 0 60px #b19898, 0 0 70px #e41123;
+            }
+            to {
+                text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="glow">Teen Vibe</div>
+            {% include 'search.html' %}
+            <a href="{% url 'search' %}">
+                <div class='button'>🔍</div>
+            </a>
+            <div class="toggle-button" onclick="toggleDarkMode()"></div>
+        </div>
+
+        {% block content %}
+        <div class="feed">
+            <div class="like-animation" id="likeAnimation1">&#10084;</div>
+            <!-- Add your feed content here --><br><br>
+            <br><br><br><br><br><br>
+
+        </div>
+
+    </div>
+    <br><br>
+    <br><br><br><br><br><br> {% endblock %}
+    <div class="feed">
+        <div class="like-animation" id="likeAnimation4">&#10084;</div>
+        <!-- Add your feed content here -->
+    </div>
+    {% if user.is_authenticated %}
+    <div class="navigation">
+        <a href="{% url 'feed' %}">Home</a>
+        <a href="{% url 'home' %}">Memes</a>
+        <a href="{% url 'add_post' %}"><button class="btn btn-primary border rounded-circle" type="button" style="width: 40px;padding: 7px;background-color: rgb(73, 77, 82);">➕</button></a>
+        <a href="{% url 'chathome'%}">Chats</a>
+        <a href="{% url 'profile' %}">Profile</a>
+    </div>
+    {% else %}
+    <a href="{% url 'register' %}">Register</a>
+    <a href="{% url 'user_login' %}">Login</a> {% endif %}
+    <div class="notification-animation" id="notificationAnimation"></div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle("dark-mode");
+        }
+
+        function showLikeAnimation(animationId) {
+            const animation = document.getElementById(animationId);
+            animation.style.transform = "scale(2)";
+            animation.style.opacity = 1;
+
+            setTimeout(function() {
+                animation.style.transform = "scale(1)";
+                animation.style.opacity = 0;
+            }, 500);
+        }
+
+        function showNotificationAnimation() {
+            const notificationAnimation = document.getElementById("notificationAnimation");
+            notificationAnimation.style.display = "block";
+
+            setTimeout(function() {
+                notificationAnimation.style.transform = "translateX(-10px)";
+                notificationAnimation.style.opacity = 1;
+            }, 100);
+
+            setTimeout(function() {
+                notificationAnimation.style.transform = "translateX(0)";
+                notificationAnimation.style.opacity = 0;
+                notificationAnimation.style.display = "none";
+            }, 1000);
+        }
+
+        const feedElements = document.getElementsByClassName("feed");
+
+        for (let i = 0; i < feedElements.length; i++) {
+            const feed = feedElements[i];
+
+            feed.addEventListener("dblclick", function() {
+                const animationId = `likeAnimation${i + 1}`;
+                showLikeAnimation(animationId);
+            });
+        }
+
+        // Simulating a notification after 3 seconds
+        setTimeout(function() {
+            showNotificationAnimation();
+        }, 3000);
+        window.addEventListener('scroll', function() {
+            var scrollPosition = window.pageYOffset;
+            var windowHeight = window.innerHeight;
+            var fullHeight = document.documentElement.scrollHeight;
+
+            if (scrollPosition + windowHeight >= fullHeight) {
+                // Reached the end of the page, trigger auto-refresh
+                location.reload(); // Refresh the page
+            }
+        });
+        window.addEventListener('scroll', function() {
+            var scrollPosition = window.pageYOffset;
+            var windowHeight = window.innerHeight;
+            var fullHeight = document.documentElement.scrollHeight;
+
+            if (scrollPosition + windowHeight >= fullHeight) {
+                // Reached the end of the page, trigger auto-refresh
+                window.scrollTo(0, 0); // Scroll to the top of the page
+                location.reload(); // Refresh the page
+            }
+        });
+    </script>
+</body>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/-Filterable-Cards-.js' %}"></script>
+<script src="{% static 'assets/js/jquery.min.js' %} "></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %} "></script>
+
+</html>
